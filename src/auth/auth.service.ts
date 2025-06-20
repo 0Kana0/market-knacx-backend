@@ -19,8 +19,6 @@ export class AuthService {
   ) {}
 
   async login(createAuthDto: CreateAuthDto) {
-    console.log('createAuthDto', createAuthDto);
-    
     const user = await this.validateUser(createAuthDto)
     const payload = {
       username: user.email,
@@ -96,8 +94,6 @@ export class AuthService {
     // ถ้า refreshToken ที่ส่งมาตรงกับ refreshToken ที่ hash ใน database ให้ทำ login ใหม่
     const isMatch = await compare(refreshToken, user.refresh_token);
     if (!isMatch) throw new ForbiddenException('invalid refresh token');
-
-    console.log('user', user);
     
     return this.login(user);
   }

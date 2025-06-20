@@ -16,23 +16,20 @@ import { CacheModule } from '@nestjs/cache-manager';
 import * as redisStore from 'cache-manager-ioredis';
 import { BullModule } from '@nestjs/bull';
 import { EmailModule } from './email/email.module';
+import { DatabaseModule } from './database.module';
 
 @Module({
   imports: [
     // ตั้งค่าฐานข้อมูลโดยใช้ค่าจาก .env
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => ({
-        type: 'mysql',
-        host: configService.get('DB_HOST'),
-        port: 3306,
-        username: configService.get('DB_USERNAME'),
-        password: configService.get('DB_PASSWORD'),
-        database: configService.get('DB_NAME'),
-        entities: [User, Product, Order, OrderItem], 
-        synchronize: true,
-      }),
-      inject: [ConfigService],
+    DatabaseModule.forRoot({
+      type: 'mysql',
+      host: 'localhost',
+      port: 3306,
+      username: 'root',
+      password: '1234',
+      database: 'market_db',
+      entities: [User, Product, Order, OrderItem],
+      synchronize: true,
     }),
     CacheModule.registerAsync({
       useFactory: () => ({
