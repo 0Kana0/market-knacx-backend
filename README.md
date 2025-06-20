@@ -96,3 +96,16 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+
+สร้างไฟล์ .env โดยที่มีข้อมูลดังนี้
+PORT=
+
+DB_HOST=
+DB_NAME=
+DB_USERNAME=
+DB_PASSWORD=
+
+EMAIL_USER= 
+EMAIL_PASSWORD= 
+
+กำหนดตามเเต่เครื่องของเเต่ละคน
